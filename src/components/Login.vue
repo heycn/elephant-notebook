@@ -1,3 +1,5 @@
+<!-- 登录注册页面 -->
+
 <template>
   <div id="login">
     <h1>{{ msg }}</h1>
@@ -9,7 +11,7 @@
     name: 'Login',
     data() {
       return {
-        msg: '这是登录页面'
+        msg: '这是登录注册页面'
       }
     }
   }
