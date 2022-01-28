@@ -19,7 +19,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/note',
+      path: '/notebooks',
       component: Notebooks
     },
     {
