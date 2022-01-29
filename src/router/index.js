@@ -10,25 +10,10 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      component: HelloWorld
-    },
-    {
-      path: '/login',
-      component: Login
-    },
-    {
-      path: '/notebooks',
-      component: Notebooks
-    },
-    {
-      path: '/note/:noteId',
-      component: Note
-    },
-    {
-      path: '/trash/:noteId',
-      component: Trash
-    }
+    { path: '/', component: HelloWorld },
+    { path: '/login', component: Login },
+    { path: '/notebooks', component: Notebooks },
+    { path: '/note/:noteId', component: Note },
+    { path: '/trash/:noteId', component: Trash }
   ]
 })
