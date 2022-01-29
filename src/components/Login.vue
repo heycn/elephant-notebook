@@ -7,18 +7,20 @@
         <div class="modal-container">
           <div class="main"></div>
           <div class="form">
-            <h3>创建账户</h3>
+            <div class="loginAndRegister">
+              <h3 title="还没有账户？3步就能创建哦~">创建账户</h3>
+              <h3 title="已有账户？现在登录吧！">立即登录</h3>
+            </div>
             <div v-show="true" class="register">
               <input type="text" placeholder="用户名" />
               <input type="password" placeholder="密码" />
-              <div class="button">创建账号</div>
+              <div class="button" title="最后一步，点击创建！">创建</div>
             </div>
-            <h3>登录</h3>
 
             <div v-show="false" class="login">
               <input type="text" placeholder="输入用户名" />
               <input type="password" placeholder="密码" />
-              <div class="button">登录</div>
+              <div class="button" title="点击登录">登录</div>
             </div>
           </div>
         </div>
@@ -67,7 +69,7 @@
     width: 600px;
     height: 300px;
     margin: 0px auto;
-    background-color: #fff;
+    background-color: #f4f4f4;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.25s ease;
@@ -83,15 +85,19 @@
       width: 270px;
       border-left: 1px solid #ccc;
 
-      h3 {
-        padding: 10px 20px;
-        font-weight: normal;
-        font-size: 16px;
-        border-top: 1px solid #eee;
-        cursor: pointer;
+      .loginAndRegister {
+        display: flex;
+        justify-content: center;
+        h3 {
+          color: #666;
+          padding: 12px 24px;
+          font-weight: normal;
+          font-size: 16px;
+          cursor: pointer;
+        }
 
-        &:nth-of-type(2) {
-          border-bottom: 1px solid #eee;
+        h3:hover {
+          color: #2bb964;
         }
       }
 
@@ -125,7 +131,7 @@
           margin-top: 10px;
         }
         input:focus {
-          border: 3px solid #9dcaf8;
+          border: 2px solid #9dcaf8;
         }
 
         p {
