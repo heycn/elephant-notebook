@@ -27,36 +27,34 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   #sidebar {
     position: relative;
     min-width: 64px;
     text-align: center;
     background: #353a5a;
-  }
 
-  .icons {
-    margin-top: 16px;
-  }
+    .icons {
+      margin-top: 16px;
+      a {
+        padding: 12px 0;
+        display: block;
+      }
+    }
 
-  .icons a {
-    padding: 12px 0;
-    display: block;
-  }
+    .router-link-active {
+      background: #4a4e6b;
+    }
 
-  .icons .router-link-active {
-    background: #4a4e6b;
-  }
-
-  .logout {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .iconfont {
-    color: #fff;
+    .logout {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+    }
+    .iconfont {
+      color: #fff;
+    }
   }
 </style>
