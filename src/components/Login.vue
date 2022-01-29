@@ -9,12 +9,12 @@
           <div class="form">
             <div class="loginAndRegister">
               <h3 title="还没有账户？3步就能创建哦~">创建账户</h3>
-              <h3 title="已有账户？现在登录吧！">立即登录</h3>
+              <h3 title="已有账户？现在登录吧!">立即登录</h3>
             </div>
             <div v-show="true" class="register">
               <input type="text" placeholder="用户名" />
               <input type="password" placeholder="密码" />
-              <div class="button" title="最后一步，点击创建！">创建</div>
+              <div class="button" title="最后一步，点击创建!">创建</div>
             </div>
 
             <div v-show="false" class="login">
