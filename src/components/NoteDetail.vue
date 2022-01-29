@@ -18,6 +18,6 @@
 
 <style scoped>
   h1 {
-    color: blue;
+    color: rgb(48, 146, 24);
   }
 </style>

@@ -22,6 +22,6 @@
 
 <style scoped>
   h1 {
-    color: aquamarine;
+    color: rgb(50, 107, 214);
   }
 </style>

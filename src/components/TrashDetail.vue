@@ -18,6 +18,6 @@
 
 <style scoped>
   h1 {
-    color: burlywood;
+    color: rgb(255, 145, 145);
   }
 </style>

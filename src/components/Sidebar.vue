@@ -1,3 +1,5 @@
+<!-- 侧边栏 -->
+
 <template>
   <div id="sidebar">
     <div class="icons">
@@ -11,10 +13,18 @@
   </div>
 </template>
 
+<script>
+  export default {
+    methods: {
+      onLogout() {}
+    }
+  }
+</script>
+
 <style scoped>
   #sidebar {
     position: relative;
-    max-width: 56px;
+    min-width: 64px;
     text-align: center;
     background: #353a5a;
   }
@@ -24,7 +34,7 @@
   }
 
   .icons a {
-    padding: 6px 0;
+    padding: 12px 0;
     display: block;
   }
 
@@ -35,7 +45,7 @@
   .logout {
     position: absolute;
     bottom: 20px;
-    widows: 100%;
+    width: 100%;
     text-align: center;
     cursor: pointer;
   }
