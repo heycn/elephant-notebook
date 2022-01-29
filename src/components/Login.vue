@@ -53,20 +53,31 @@
   }
 
   .modal-container {
-    width: 800px;
-    height: 500px;
+    @media (max-width: 1200px) {
+      width: 500px;
+      height: 250px;
+    }
+    @media (max-width: 600px) {
+      width: 270px;
+      height: 250px;
+      .main {
+        display: none;
+      }
+    }
+    width: 600px;
+    height: 300px;
     margin: 0px auto;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     font-family: Helvetica, Arial, sans-serif;
     display: flex;
 
     .main {
       flex: 1;
-      background: #36bc64 url(//cloud.hunger-valley.com/17-12-13/38476998.jpg-middle) center center no-repeat;
-      background-size: contain;
+      background: #36bc64 url(../assets/logo.png) center center no-repeat;
+      background-size: 50%;
     }
     .form {
       width: 270px;
