@@ -31,11 +31,15 @@
 </template>
 
 <script>
-  import request from '@/helpers/request'
+  import Auth from '@/apis/auth'
 
-  request('/auth').then(data => {
+  Auth.getInfo().then(data => {
     console.log(data)
   })
+
+  // request('/auth').then(data => {
+  //   console.log(data)
+  // })
 
   export default {
     name: 'Login',
@@ -81,7 +85,8 @@
         }
         this.register.isError = false
         this.register.notice = ''
-        request('/auth/register', 'POST', {
+
+        Auth.register({
           username: this.register.username,
           password: this.register.password
         }).then(data => {
@@ -103,7 +108,8 @@
         }
         this.login.isError = false
         this.login.notice = ''
-        request('/auth/login', 'POST', {
+
+        Auth.login({
           username: this.login.username,
           password: this.login.password
         }).then(data => {
