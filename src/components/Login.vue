@@ -11,15 +11,15 @@
               <h3 @click="showRegister" title="还没有账户？3步就能创建哦~">创建账户</h3>
               <h3 @click="showLogin" title="已有账户？现在登录吧!">立即登录</h3>
             </div>
-            <div v-show="isShowRegister" class="register">
-              <input type="text" v-model="register.username" placeholder="用户名" />
-              <input type="password" v-model="register.password" placeholder="密码" />
+            <div v-bind:class="{ show: isShowRegister }" class="register">
+              <input type="text" v-model="register.username" placeholder="创建用户名" />
+              <input type="password" v-model="register.password" placeholder="设置密码" />
               <p v-bind:class="{ error: register.isError }">{{ register.notice }}</p>
               <div class="button" @click="onRegister" title="最后一步，点击创建!">创建</div>
             </div>
-            <div v-show="isShowLogin" class="login">
+            <div v-bind:class="{ show: isShowLogin }" class="login">
               <input type="text" v-model="login.username" placeholder="输入用户名" />
-              <input type="password" v-model="login.password" placeholder="密码" />
+              <input type="password" v-model="login.password" placeholder="输入密码" />
               <p v-bind:class="{ error: login.isError }">{{ login.notice }}</p>
               <div class="button" @click="onLogin" title="点击登录">登录</div>
             </div>
@@ -123,7 +123,6 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     display: table;
-    transition: opacity 0.3s ease;
   }
 
   .modal-wrapper {
@@ -148,9 +147,8 @@
     margin: 0px auto;
     background-color: #f4f4f4;
     border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.25s ease;
-    font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.33);
+    transition: all 0.25s;
     display: flex;
 
     .main {
@@ -161,7 +159,7 @@
     .form {
       width: 270px;
       border-left: 1px solid #ccc;
-
+      overflow: hidden;
       .loginAndRegister {
         display: flex;
         justify-content: center;
@@ -172,7 +170,6 @@
           font-size: 16px;
           cursor: pointer;
         }
-
         h3:hover {
           color: #2bb964;
         }
@@ -192,9 +189,15 @@
 
       .login,
       .register {
-        padding: 10px 20px;
+        padding: 0px 20px;
         border-top: 1px solid #eee;
-
+        overflow: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.25s;
+        &.show {
+          height: 180px;
+        }
         input {
           display: block;
           width: 100%;
