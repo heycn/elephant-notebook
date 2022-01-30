@@ -33,7 +33,7 @@
 <script>
   import request from '@/helpers/request'
 
-  request('/auth/login', 'POST', { username: 'hunger', password: '123456' }).then(data => {
+  request('/auth').then(data => {
     console.log(data)
   })
 
@@ -79,10 +79,14 @@
           this.register.notice = result2.notice
           return
         }
-        // TODO
-        // 等接口写好之后再写提交
         this.register.isError = false
         this.register.notice = ''
+        request('/auth/register', 'POST', {
+          username: this.register.username,
+          password: this.register.password
+        }).then(data => {
+          console.log(data)
+        })
       },
       onLogin() {
         let result1 = this.validUsername(this.login.username)
@@ -97,10 +101,14 @@
           this.login.notice = result2.notice
           return
         }
-        // TODO
-        // 等接口写好之后再写提交
         this.login.isError = false
         this.login.notice = ''
+        request('/auth/login', 'POST', {
+          username: this.login.username,
+          password: this.login.password
+        }).then(data => {
+          console.log(data)
+        })
       },
       validUsername(username) {
         return {

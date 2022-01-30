@@ -9,20 +9,26 @@
       <router-link to="/trash/2" title="回收站"> <i class="iconfont icon-trash"></i> </router-link>
     </div>
     <div class="logout" @click="onLogout">
-      <i class="iconfont icon-logout" title="注销"></i>
+      <i class="iconfont icon-logout" title="退出当前登录"></i>
     </div>
   </div>
 </template>
 
 <script>
   import avatar from './Avatar.vue'
+  import request from '@/helpers/request'
 
   export default {
-    methods: {
-      onLogout() {}
-    },
     components: {
       avatar
+    },
+    methods: {
+      onLogout() {
+        console.log('退出登录')
+        request('/auth/logout').then(data => {
+          console.log(data)
+        })
+      }
     }
   }
 </script>
