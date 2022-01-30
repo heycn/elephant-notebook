@@ -1,4 +1,4 @@
-// 用户登录接口
+// 用户请求接口
 
 import axios from 'axios'
 
@@ -15,19 +15,21 @@ export default function request(url, type = 'GET', data = {}) {
         return (status >= 200 && status < 300) || status === 400
       }
     }
-    if (type.toLowerCase() === 'get') {
-      option.params = data
-    } else {
-      option.data = data
-    }
+
+    type.toLowerCase() === 'get' ? (option.params = data) : (option.data = data)
+    // if (type.toLowerCase() === 'get') {
+    //   option.params = data
+    // } else {
+    //   option.data = data
+    // }
     axios(option)
       .then(res => {
-        if (res.status === 200) {
-          resolve(res.data)
-        } else {
-          console.error(res.data)
-          reject(res.data)
-        }
+        res.status === 200 ? resolve(res.data) : reject(res.data)
+        // if (res.status === 200) {
+        //   resolve(res.data)
+        // } else {
+        //   reject(res.data)
+        // }
       })
       .catch(err => {
         console.error({ msg: '请求失败' })

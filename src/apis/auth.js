@@ -1,3 +1,5 @@
+// 封装接口
+
 import request from '@/helpers/request'
 
 const URl = {
@@ -14,6 +16,10 @@ export default {
   login({ username, password }) {
     return request(URl.LOGIN, 'POST', { username, password })
   },
-  logout() { return request(URl.LOGOUT) },
-  getInfo() { return request(URl.GET_INFO) }
+  logout() {
+    return request(URl.LOGOUT)
+  },
+  getInfo() {
+    return request(URl.GET_INFO)
+  }
 }
