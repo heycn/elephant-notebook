@@ -31,6 +31,12 @@
 </template>
 
 <script>
+  import request from '@/helpers/request'
+
+  request('/auth/login', 'POST', { username: 'hunger', password: '123456' }).then(data => {
+    console.log(data)
+  })
+
   export default {
     name: 'Login',
     data() {
@@ -77,7 +83,6 @@
         // 等接口写好之后再写提交
         this.register.isError = false
         this.register.notice = ''
-        console.log('别tm再点提交啦!用户注册的接口还写好啊!')
       },
       onLogin() {
         let result1 = this.validUsername(this.login.username)
@@ -96,7 +101,6 @@
         // 等接口写好之后再写提交
         this.login.isError = false
         this.login.notice = ''
-        console.log('别tm再点啦!接口还写好啊!')
       },
       validUsername(username) {
         return {
