@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const mockBaseURL = 'https://localhost:3000/' // 本地测试地址
+const mockBaseURL = 'https://note-server.hunger-valley.com' // 本地测试地址 https://localhost:3000/
 const realBaseURL = 'https://note-server.hunger-valley.com' // 线上地址
 
 exports.config = function({ isDev = true } = { isDev: true }) {

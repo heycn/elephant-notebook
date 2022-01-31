@@ -43,6 +43,7 @@
 
   export default {
     name: 'Login',
+
     data() {
       return {
         isShowLogin: true,
@@ -61,6 +62,7 @@
         }
       }
     },
+
     methods: {
       showRegister() {
         this.isShowRegister = true
@@ -70,63 +72,56 @@
         this.isShowLogin = true
         this.isShowRegister = false
       },
+
       onRegister() {
-        let result1 = this.validUsername(this.register.username)
-        if (!result1.isValid) {
+        if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.register.username)) {
           this.register.isError = true
-          this.register.notice = result1.notice
+          this.register.notice = '用户名3~15个字符，仅限于字母数字下划线中文'
           return
         }
-        let result2 = this.validPassword(this.register.password)
-        if (!result2.isValid) {
+        if (!/^.{6,16}$/.test(this.register.password)) {
           this.register.isError = true
-          this.register.notice = result2.notice
+          this.register.notice = '密码长度为6~16个字符'
           return
         }
-        this.register.isError = false
-        this.register.notice = ''
 
         Auth.register({
           username: this.register.username,
           password: this.register.password
-        }).then(data => {
-          console.log(data)
         })
+          .then(data => {
+            this.register.isError = false
+            this.register.notice = ''
+          })
+          .catch(data => {
+            this.register.isError = true
+            this.register.notice = data.msg
+          })
       },
       onLogin() {
-        let result1 = this.validUsername(this.login.username)
-        if (!result1.isValid) {
+        if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.login.username)) {
           this.login.isError = true
-          this.login.notice = result1.notice
+          this.login.notice = '用户名3~15个字符，仅限于字母数字中文下划线'
           return
         }
-        let result2 = this.validPassword(this.login.password)
-        if (!result2.isValid) {
+        if (!/^.{6,16}$/.test(this.login.password)) {
           this.login.isError = true
-          this.login.notice = result2.notice
+          this.login.notice = '密码长度为6~16个字符'
           return
         }
-        this.login.isError = false
-        this.login.notice = ''
 
         Auth.login({
           username: this.login.username,
           password: this.login.password
-        }).then(data => {
-          console.log(data)
         })
-      },
-      validUsername(username) {
-        return {
-          isValid: /^[a-zA-Z_0-9\u4e00-\u9fa5]{3,15}$/.test(username),
-          notice: '用户名必须是3~15个字符，且限于字母数字中文下划线'
-        }
-      },
-      validPassword(password) {
-        return {
-          isValid: /^.{6,16}$/.test(password),
-          notice: '密码长度必须为6~16个字符'
-        }
+          .then(data => {
+            this.login.isError = false
+            this.login.notice = ''
+          })
+          .catch(data => {
+            this.login.isError = true
+            this.login.notice = data.msg
+          })
       }
     }
   }
