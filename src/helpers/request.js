@@ -16,25 +16,17 @@ export default function request(url, type = 'GET', data = {}) {
         return (status >= 200 && status < 300) || status === 400
       }
     }
-    // type.toLowerCase() === 'get' ? (option.params = data) : (option.data = data)
-    if (type.toLowerCase() === 'get') {
-      option.params = data
-    } else {
-      option.data = data
-    }
+
+    type.toLowerCase() === 'get'
+      ? (option.params = data)
+      : (option.data = data)
+
     axios(option)
       .then(res => {
-        // res.status === 200 ? resolve(res.data) : reject(res.data)
-        if (res.status === 200) {
-          resolve(res.data)
-        } else {
-          console.error(res.data)
-          reject(res.data)
-        }
+        res.status === 200
+          ? resolve(res.data)
+          : console.error(res.data)
       })
-      .catch(err => {
-        console.error({ msg: '网络异常' })
-        reject({ msg: '网络异常' })
-      })
+      .catch(err => console.error({ msg: '网络异常' }))
   })
 }
