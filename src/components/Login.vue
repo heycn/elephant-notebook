@@ -92,12 +92,14 @@
           .then(data => {
             this.register.isError = false
             this.register.notice = ''
+            this.$router.push({ path: 'notebooks' })
           })
           .catch(data => {
             this.register.isError = true
             this.register.notice = data.msg
           })
       },
+
       onLogin() {
         if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.login.username)) {
           this.login.isError = true
@@ -117,6 +119,7 @@
           .then(data => {
             this.login.isError = false
             this.login.notice = ''
+            this.$router.push({ path: 'notebooks' })
           })
           .catch(data => {
             this.login.isError = true
