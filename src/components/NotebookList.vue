@@ -3,7 +3,7 @@
 <template>
   <div class="detail" id="notebook-list">
     <header>
-      <a href="#" class="btn"><i class="iconfont icon-plus"></i> 新建记事本</a>
+      <a href="#" class="btn" @click="onCreate"><i class="iconfont icon-add"></i> 新建记事本</a>
     </header>
     <main>
       <div class="layout">
@@ -14,8 +14,8 @@
               <span class="iconfont icon-notebook"></span>
               笔记本标题1
               <span>3</span>
-              <span class="action">编辑</span>
-              <span class="action">删除</span>
+              <span class="action" @click="onEdit">编辑</span>
+              <span class="action" @click="onDelete">删除</span>
               <span class="date">3天前</span>
             </div>
           </a>
@@ -41,7 +41,7 @@
   export default {
     data() {
       return {
-        msg: '这里是笔记本列表'
+        notebooks: []
       }
     },
 
@@ -50,7 +50,20 @@
         if (!res.isLogin) {
           this.$router.push({ path: '/login' })
         }
+        this.notebooks = res.data
       })
+    },
+
+    methods: {
+      onCreate() {
+        console.log('创建')
+      },
+      onEdit() {
+        console.log('编辑')
+      },
+      onDelete() {
+        console.log('删除')
+      }
     }
   }
 </script>
