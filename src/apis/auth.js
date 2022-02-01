@@ -1,4 +1,4 @@
-// 封装接口
+// 封装用户注册登录接口
 
 import request from '@/helpers/request'
 
