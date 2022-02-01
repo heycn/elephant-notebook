@@ -24,9 +24,10 @@
     },
     methods: {
       onLogout() {
-        Auth.logout().then(data => {
-          this.$router.push({ path: 'login' })
-        })
+        Auth.logout()
+          .then(data => {
+            this.$router.push({ path: 'login' })
+          })
       }
     }
   }

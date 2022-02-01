@@ -10,7 +10,9 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', component: HelloWorld },
+    { path: '/', component: Login }, // TODO 未登录时跳转路由
+    { path: '/note/login', component: Login }, // TODO 未登录时跳转路由
+    { path: '/trash/login', component: Login }, // TODO 未登录时跳转路由
     { path: '/login', component: Login },
     { path: '/notebooks', component: Notebooks },
     { path: '/note/:noteId', component: Note },
