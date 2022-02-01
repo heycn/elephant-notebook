@@ -1,17 +1,30 @@
 <!-- 用户头像 -->
 
 <template>
-  <span :title="user.username">{{ slug }}</span>
+  <span :title="username">{{ initial }}</span>
 </template>
 
 <script>
+  import Auth from '@/apis/auth'
+
   export default {
     data() {
       return {
-        user: {
-          username: 'chennan'
-        },
-        slug: 'C'
+        username: ''
+      }
+    },
+
+    created() {
+      Auth.getInfo().then(res => {
+        if (res.isLogin) {
+          this.username = res.data.username
+        }
+      })
+    },
+
+    computed: {
+      initial() {
+        return this.username.charAt(0)
       }
     }
   }
@@ -20,16 +33,15 @@
 <style scoped>
   span {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     text-align: center;
-    line-height: 42px;
+    line-height: 36px;
     border-radius: 50%;
-    border: 1px solid #f4f4f4;
-    background: #999;
-    color: #f4f4f4;
-    text-shadow: 1px 0 1px #333;
-    font-weight: bold;
+    background: #eee;
+    color: #353a5a;
+    text-shadow: 1px 0 2px rgb(24, 18, 18);
+    font-weight: 400;
     text-transform: uppercase;
     font-size: 24px;
     margin-top: 16px;
