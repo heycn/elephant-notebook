@@ -3,7 +3,7 @@
 <template>
   <div class="detail" id="notebook-list">
     <header>
-      <a href="#" class="btn" @click="onCreate"><i class="iconfont icon-add"></i> 新建记事本</a>
+      <a href="#" class="btn" @click.prevent="onCreate"><i class="iconfont icon-add"></i> 新建记事本</a>
     </header>
     <main>
       <div class="layout">
@@ -14,9 +14,9 @@
               <span class="iconfont icon-notebook"></span>
               {{ notebook.title }}
               <span>{{ notebook.noteCounts }}</span>
-              <span class="action">编辑</span>
-              <span class="action">删除</span>
-              <span class="date">3天前</span>
+              <span class="action" @click.stop.prevent="onEdit(notebook)">编辑</span>
+              <span class="action" @click.stop.prevent="onDelete(notebook)">删除</span>
+              <span class="date">{{ notebook.friendlyCreatedAt }}</span>
             </div>
           </router-link>
         </div>
@@ -28,6 +28,7 @@
 <script>
   import Auth from '@/apis/auth'
   import Notebooks from '@/apis/notebooks'
+  import { friendlyDate } from '@/helpers/util'
 
   export default {
     data() {
@@ -51,13 +52,35 @@
 
     methods: {
       onCreate() {
-        console.log('创建')
+        let title = window.prompt('创建笔记本')
+        if (title.trim() === '') {
+          alert('笔记本名不能为空')
+          return
+        } else {
+          Notebooks.addNotebook({ title }).then(res => {
+            res.data.friendlyDate = friendlyDate(res.data.createdAt)
+            this.notebooks.unshift(res.data)
+            alert(res.msg)
+          })
+        }
       },
-      onEdit() {
-        console.log('编辑')
+
+      onEdit(notebook) {
+        let title = window.prompt('修改标题', notebook.title)
+        Notebooks.updateNotebooks(notebook.id, { title }).then(res => {
+          notebook.title = title
+          alert(res.msg)
+        })
       },
-      onDelete() {
-        console.log('删除')
+
+      onDelete(notebook) {
+        let isConfirm = window.confirm('你确定要删除吗？')
+        if (isConfirm) {
+          Notebooks.deleteNotebook(notebook.id).then(res => {
+            this.notebooks.splice(this.notebooks.indexOf(notebook), 1)
+            alert(res.msg)
+          })
+        }
       }
     }
   }

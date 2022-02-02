@@ -1,6 +1,7 @@
 // 从服务器获取数据
 
 import request from '@/helpers/request'
+import { friendlyDate } from '@/helpers/util'
 
 const URL = {
   GET: '/notebooks',
@@ -11,7 +12,17 @@ const URL = {
 
 export default {
   getAll() {
-    return request(URL.GET)
+    return new Promise((resolve, reject) => {
+      request(URL.GET)
+        .then(res => {
+          res.data = res.data.sort((notebook1, notebook2) => (notebook1.createAt < notebook2.createAt ? 1 : -1))
+          res.data.forEach(notebook => {
+            notebook.friendlyCreatedAt = friendlyDate(notebook.createAt)
+          })
+          resolve(res)
+        })
+        .catch(err => reject(err))
+    })
   },
 
   updateNotebooks(notebookId, { title = '' } = { title: '' }) {
@@ -19,7 +30,7 @@ export default {
   },
 
   deleteNotebook(notebookId) {
-    return request(URL.DELETE.replace(':id', notebookId), DELETE)
+    return request(URL.DELETE.replace(':id', notebookId), 'DELETE')
   },
 
   addNotebook({ title = '' } = { title: '' }) {
