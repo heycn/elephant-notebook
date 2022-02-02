@@ -3,13 +3,13 @@
 <template>
   <div class="detail" id="notebook-list">
     <header>
-      <a href="#" class="btn" @click.prevent="onCreate"><i class="iconfont icon-add"></i> 新建记事本</a>
+      <a href="#" class="btn" @click.prevent="onCreate"><i class="iconfont icon-add"></i>新建笔记本</a>
     </header>
     <main>
       <div class="layout">
         <h3>笔记本列表({{ notebooks.length }})</h3>
         <div class="book-list">
-          <router-link v-for="notebook in notebooks" :key="notebook.id" to="/note/1" class="notebook">
+          <router-link v-for="notebook in notebooks" to="/note/1" class="notebook">
             <div>
               <span class="iconfont icon-notebook"></span>
               {{ notebook.title }}
@@ -42,7 +42,6 @@
         if (!res.isLogin) {
           this.$router.push({ path: '/login' })
         }
-        this.notebooks = res.data
       })
 
       Notebooks.getAll().then(res => {
@@ -56,25 +55,24 @@
         if (title.trim() === '') {
           alert('笔记本名不能为空')
           return
-        } else {
-          Notebooks.addNotebook({ title }).then(res => {
-            res.data.friendlyDate = friendlyDate(res.data.createdAt)
-            this.notebooks.unshift(res.data)
-            alert(res.msg)
-          })
         }
+        Notebooks.addNotebook({ title }).then(res => {
+          res.data.friendlyCreatedAt = friendlyDate(res.data.createdAt)
+          this.notebooks.unshift(res.data)
+          alert(res.msg)
+        })
       },
 
       onEdit(notebook) {
         let title = window.prompt('修改标题', notebook.title)
-        Notebooks.updateNotebooks(notebook.id, { title }).then(res => {
+        Notebooks.updateNotebook(notebook.id, { title }).then(res => {
           notebook.title = title
           alert(res.msg)
         })
       },
 
       onDelete(notebook) {
-        let isConfirm = window.confirm('你确定要删除吗？')
+        let isConfirm = window.confirm('你确定要删除吗?')
         if (isConfirm) {
           Notebooks.deleteNotebook(notebook.id).then(res => {
             this.notebooks.splice(this.notebooks.indexOf(notebook), 1)
