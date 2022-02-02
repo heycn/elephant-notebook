@@ -17,7 +17,7 @@ export default {
         .then(res => {
           res.data = res.data.sort((notebook1, notebook2) => (notebook1.createAt < notebook2.createAt ? 1 : -1))
           res.data.forEach(notebook => {
-            notebook.friendlyCreatedAt = friendlyDate(notebook.createAt)
+            notebook.friendlyCreatedAt = friendlyDate(notebook.createdAt)
           })
           resolve(res)
         })
@@ -25,7 +25,7 @@ export default {
     })
   },
 
-  updateNotebooks(notebookId, { title = '' } = { title: '' }) {
+  updateNotebook(notebookId, { title = '' } = { title: '' }) {
     return request(URL.UPDATE.replace(':id', notebookId), 'PATCH', { title })
   },
 

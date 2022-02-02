@@ -1,4 +1,5 @@
 // 格式化日期
+
 export function friendlyDate(dateStr) {
   let dateObj = typeof dateStr === 'object'
     ? dateStr
@@ -20,7 +21,6 @@ export function friendlyDate(dateStr) {
       break
     default:
       str = Math.floor(space / (1000 * 3600 * 24)) + '天前'
-      break
   }
   return str
 }
