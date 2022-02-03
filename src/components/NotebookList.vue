@@ -63,10 +63,7 @@
           .then(res => {
             res.data.friendlyCreatedAt = friendlyDate(res.data.createdAt)
             this.notebooks.unshift(res.data)
-            this.$message({
-              type: 'success',
-              message: res.msg
-            })
+            this.$message.success(res.msg)
           })
       },
 
@@ -76,6 +73,7 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           inputPattern: /^.{1,30}$/,
+          inputValue: notebook.title,
           inputErrorMessage: '标题不能为空，且不能超过30个字符'
         })
           .then(({ value }) => {
@@ -84,10 +82,7 @@
           })
           .then(res => {
             notebook.title = title
-            this.$message({
-              type: 'success',
-              message: res.msg
-            })
+            this.$message.success(res.msg)
           })
       },
 
@@ -102,10 +97,7 @@
           })
           .then(res => {
             this.notebooks.splice(this.notebooks.indexOf(notebook), 1)
-            this.$message({
-              type: 'success',
-              message: res.msg
-            })
+            this.$message.success(res.msg)
           })
       }
     }
