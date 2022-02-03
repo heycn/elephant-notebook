@@ -8,7 +8,7 @@
       <router-link to="/notebooks" title="列表页"> <i class="iconfont icon-notebook"></i> </router-link>
       <router-link to="/trash" title="回收站"> <i class="iconfont icon-trash"></i> </router-link>
     </div>
-    <div class="logout" @click="onLogout">
+    <div class="logout" @click="logout">
       <i class="iconfont icon-logout" title="退出当前登录"></i>
     </div>
   </div>
@@ -23,10 +23,11 @@
       avatar
     },
     methods: {
-      onLogout() {
+      logout() {
         Auth.logout()
-          .then(data => {
+          .then(res => {
             this.$router.push({ path: 'login' })
+            this.$message.success(res.msg)
           })
       }
     }

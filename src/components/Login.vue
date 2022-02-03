@@ -34,8 +34,8 @@
   import Auth from '@/apis/auth'
   import Bus from '@/helpers/bus'
 
-  Auth.getInfo().then(data => {
-    console.log(data)
+  Auth.getInfo().then(res => {
+    console.log(res)
   })
 
   export default {
@@ -86,15 +86,15 @@
           username: this.register.username,
           password: this.register.password
         })
-          .then(data => {
+          .then(() => {
             this.register.isError = false
             this.register.notice = ''
             Bus.$emit('userInfo', { username: this.login.username })
             this.$router.push({ path: 'notebooks' })
           })
-          .catch(data => {
+          .catch(res => {
             this.register.isError = true
-            this.register.notice = data.msg
+            this.register.notice = res.msg
           })
       },
 
@@ -114,20 +114,22 @@
           username: this.login.username,
           password: this.login.password
         })
-          .then(data => {
+          .then(res => {
             this.login.isError = false
             this.login.notice = ''
             Bus.$emit('userInfo', { username: this.login.username })
             this.$router.push({ path: 'notebooks' })
+            this.$message.success(res.msg)
           })
-          .catch(data => {
+          .catch(res => {
             this.login.isError = true
-            this.login.notice = data.msg
+            this.login.notice = res.msg
           })
       }
     }
   }
 </script>
+
 <style lang="less" scoped>
   .modal-mask {
     position: fixed;
