@@ -3,13 +3,18 @@
 <template>
   <div class="detail" id="notebook-list">
     <header>
-      <a href="#" class="btn" @click.prevent="onCreate"><i class="iconfont icon-add"></i>新建笔记本</a>
+      <a href="#" class="btn" @click.prevent="onCreate"><i class="iconfont icon-add" />新建笔记本</a>
     </header>
     <main>
       <div class="layout">
         <h3>笔记本列表({{ notebooks.length }})</h3>
         <div class="book-list">
-          <router-link class="notebook" v-for="notebook in notebooks" to="/note/1" :key="notebook">
+          <router-link
+            class="notebook"
+            v-for="notebook in notebooks"
+            :to="`/note?notebookId=${notebook.id}`"
+            :key="notebook"
+          >
             <div>
               <span class="iconfont icon-notebook"></span>
               {{ notebook.title }}

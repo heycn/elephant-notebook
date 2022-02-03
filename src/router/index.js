@@ -2,19 +2,32 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Notebooks from '@/components/NotebookList'
-import Note from '@/components/NoteDetail'
-import Trash from '@/components/TrashDetail'
+import NoteDetail from '@/components/NoteDetail'
+import TrashDetail from '@/components/TrashDetail'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', component: Login }, // TODO 未登录时跳转路由
-    { path: '/note/login', component: Login }, // TODO 未登录时跳转路由
-    { path: '/trash/login', component: Login }, // TODO 未登录时跳转路由
-    { path: '/login', component: Login },
-    { path: '/notebooks', component: Notebooks },
-    { path: '/note/:noteId', component: Note },
-    { path: '/trash/:noteId', component: Trash }
+    {
+      path: '/',
+      component: Login
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/notebooks',
+      component: Notebooks
+    },
+    {
+      path: '/note',
+      component: NoteDetail
+    },
+    {
+      path: '/trash',
+      component: TrashDetail
+    }
   ]
 })
