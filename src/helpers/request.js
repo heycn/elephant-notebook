@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import baseURLConfig from './config-baseURL'
+import { Message } from 'element-ui'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www.form-urlencoded'
 axios.defaults.baseURL = baseURLConfig.baseURL // 生产环境和开发环境baseURL 无缝切换
@@ -23,10 +24,22 @@ export default function request(url, type = 'GET', data = {}) {
 
     axios(option)
       .then(res => {
-        res.status === 200
-          ? resolve(res.data)
-          : console.error(res.data)
+        if (res.status === 200) {
+          resolve(res.data)
+        } else {
+          Message({
+            type: 'error',
+            msg: res.data.msg
+          })
+          reject(res.data)
+        }
       })
-      .catch(err => console.error({ msg: '网络异常' }))
+      .catch(err => {
+        Message({
+          type: 'error',
+          msg: '网络异常'
+        })
+        reject({ mes: '网络异常' })
+      })
   })
 }
