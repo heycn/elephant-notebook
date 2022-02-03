@@ -148,19 +148,15 @@
   }
 
   .modal-container {
-    @media (max-width: 1200px) {
-      width: 500px;
-      height: 250px;
-    }
-    @media (max-width: 600px) {
-      width: 270px;
+    @media (max-width: 800px) {
+      width: 250px;
       height: 250px;
       .main {
         display: none;
       }
     }
-    width: 600px;
-    height: 300px;
+    width: 500px;
+    height: 250px;
     margin: 0px auto;
     background-color: #f4f4f4;
     border-radius: 2px;
