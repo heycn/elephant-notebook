@@ -138,7 +138,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
     display: table;
   }
 
@@ -166,7 +166,7 @@
 
     .main {
       flex: 1;
-      background: #36bc64 url(../assets/logo.png) center center no-repeat;
+      background: #0694f9 url(../assets/logo.png) center center no-repeat;
       background-size: 50%;
     }
     .form {
@@ -184,12 +184,12 @@
           cursor: pointer;
         }
         h3:hover {
-          color: #2bb964;
+          color: #0694f9;
         }
       }
 
       .button {
-        background-color: #2bb964;
+        background-color: #0694f9;
         height: 36px;
         line-height: 36px;
         text-align: center;
