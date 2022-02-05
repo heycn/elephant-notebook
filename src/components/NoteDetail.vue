@@ -2,7 +2,7 @@
 
 <template>
   <div id="note" class="detail">
-    <NoteSidebar />
+    <NoteSidebar :curNote="curNote" @update:notes="val => (notes = val)" />
     <div class="note-detail">
       <div class="note-bar">
         <span> 创建日期：{{ curNote.createdAtFriendly }}</span>
@@ -33,13 +33,8 @@
 
     data() {
       return {
-        curNote: {
-          title: '我的笔记',
-          content: '我的笔记内容',
-          createdAtFriendly: '1天前',
-          updateAtFriendly: '刚刚',
-          statusText: '未更新'
-        }
+        curNote: {},
+        notes: []
       }
     },
 
@@ -49,6 +44,11 @@
           this.$router.push({ path: '/login' })
         }
       })
+    },
+
+    beforeUpdate(to, from, next) {
+      this.curNote = this.notes.find(note => note.id == to.query.noteId)
+      next()
     }
   }
 </script>
