@@ -30,6 +30,7 @@
 
 <script>
   import Notebooks from '@/apis/notebooks'
+  import Notes from '@/apis/notes'
 
   export default {
     created() {
@@ -49,8 +50,12 @@
     },
 
     methods: {
-      handleCommand(data) {
-        console.log(data)
+      handleCommand(notebookId) {
+        if (notebookId !== 'trash') {
+          Notes.getAll({ notebookId }).then(res => {
+            this.notes = res.data
+          })
+        }
       }
     }
   }
