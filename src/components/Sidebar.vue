@@ -24,11 +24,10 @@
     },
     methods: {
       logout() {
-        Auth.logout()
-          .then(res => {
-            this.$router.push({ path: 'login' })
-            this.$message.success(res.msg)
-          })
+        Auth.logout().then(res => {
+          this.$router.push({ path: 'login' })
+          this.$message.success(res.msg)
+        })
       }
     }
   }

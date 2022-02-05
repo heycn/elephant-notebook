@@ -43,6 +43,7 @@
         })
         .then(res => {
           this.notes = res.data
+          this.$emit('update:notes', this.notes)
         })
     },
 
@@ -62,6 +63,7 @@
         this.curBook = this.notebooks.find(notebook => notebook.id == notebookId)
         Notes.getAll({ notebookId }).then(res => {
           this.notes = res.data
+          this.$emit('update:notes', this.notes)
         })
       }
     }

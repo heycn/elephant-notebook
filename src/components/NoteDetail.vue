@@ -2,7 +2,7 @@
 
 <template>
   <div id="note" class="detail">
-    <NoteSidebar :curNote="curNote" @update:notes="val => (notes = val)" />
+    <note-sidebar @update:notes="val => notes = val"></note-sidebar>
     <div class="note-detail">
       <div class="note-bar">
         <span> 创建日期：{{ curNote.createdAtFriendly }}</span>
@@ -12,7 +12,7 @@
         <span class="iconfont icon-fullscreen"></span>
       </div>
       <div class="note-title">
-        <input type="text" :value="curNote.content" placeholder="输入标题" />
+        <input type="text" v-model:value="curNote.title" placeholder="输入标题" />
       </div>
       <div class="editor">
         <textarea v-show="true" :value="curNote.content" placeholder="输入内容，支持 Markdown 语法"></textarea>
@@ -46,7 +46,7 @@
       })
     },
 
-    beforeUpdate(to, from, next) {
+    beforeRouteUpdate(to, from, next) {
       this.curNote = this.notes.find(note => note.id == to.query.noteId)
       next()
     }
