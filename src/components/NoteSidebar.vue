@@ -12,7 +12,7 @@
         <el-dropdown-item command="trash">回收站</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
-    <span class="btn add-note">添加笔记</span>
+    <span class="btn add-note" @click="addNote">添加笔记</span>
     <div class="menu">
       <div>更新时间</div>
       <div>标题</div>
@@ -66,6 +66,13 @@
         Notes.getAll({ notebookId }).then(res => {
           this.notes = res.data
           this.$emit('update:notes', this.notes)
+        })
+      },
+
+      addNote() {
+        Notes.addNote({ notebookId: this.curBook.id }).then(res => {
+          console.log(res)
+          this.notes.unshift(res.data)
         })
       }
     }
