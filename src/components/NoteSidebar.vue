@@ -29,13 +29,18 @@
 </template>
 
 <script>
+  import Notebooks from '@/apis/notebooks'
+
   export default {
+    created() {
+      Notebooks.getAll().then(res => {
+        this.notebooks = res.data
+      })
+    },
+
     data() {
       return {
-        notebooks: [
-          { id: 1, title: 'hello1' },
-          { id: 2, title: 'hello2', updatedAtFriendly: '3分钟前' }
-        ],
+        notebooks: [],
         notes: [
           { id: 11, title: '第1个笔记', updatedAtFriendly: '刚刚' },
           { id: 12, title: '第2个笔记', updatedAtFriendly: '3分钟前' }
