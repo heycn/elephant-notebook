@@ -16,7 +16,7 @@
       </div>
       <div class="editor">
         <textarea v-show="true" :value="curNote.content" placeholder="输入内容，支持 Markdown 语法"></textarea>
-        <div class="preview markdown-body" v-html="" v-show="false"></div>
+        <div class="preview markdown-body" v-html="html" v-show="false"></div>
       </div>
     </div>
   </div>
