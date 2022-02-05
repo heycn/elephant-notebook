@@ -53,7 +53,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   @import url(../assets/css/note-detail.less);
 
   #note {
