@@ -16,7 +16,7 @@
 </script>
 
 <style>
-  @import '//at.alicdn.com/t/font_3164871_f4u168k5lac.css';
+  @import '//at.alicdn.com/t/font_3164871_p7c5ft5wn4j.css';
   * {
     box-sizing: border-box;
     margin: 0;

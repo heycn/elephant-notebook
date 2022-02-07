@@ -12,11 +12,13 @@
   "dependencies": {
     "axios": "^0.25.0",
     "element-ui": "^2.15.6",
+    "markdown-it": "^12.3.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.178",
+    "@types/markdown-it": "^12.2.3",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
