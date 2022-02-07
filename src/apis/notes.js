@@ -1,13 +1,11 @@
-// 获取笔记列表接口
-
 import request from '@/helpers/request'
 import { friendlyDate } from '@/helpers/util'
 
-const URl = {
+const URL = {
   GET: '/notes/from/:notebookId',
   ADD: '/notes/to/:notebookId',
-  UPDATE: '/notes/:notebookId',
-  DELETE: '/notes/:notebookId'
+  UPDATE: '/notes/:noteId',
+  DELETE: '/notes/:noteId'
 }
 
 export default {
