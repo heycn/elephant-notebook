@@ -12,23 +12,22 @@
   export default {
     data() {
       return {
-        msg: '回收站详情页'
+        msg: '回收站'
       }
     },
 
     created() {
-      Auth.getInfo()
-        .then(res => {
-          if (!res.isLogin) {
-            this.$router.push({ path: '/login'})
-          }
-        })
+      Auth.getInfo().then(res => {
+        if (!res.isLogin) {
+          this.$router.push({ path: '/login' })
+        }
+      })
     }
   }
 </script>
 
 <style scoped>
   h1 {
-    color: rgb(255, 145, 145);
+    color: blue;
   }
 </style>

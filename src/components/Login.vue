@@ -11,18 +11,22 @@
               <h3 @click="showRegister" title="还没有账户？3步就能创建哦~">创建账户</h3>
               <h3 @click="showLogin" title="已有账户？现在登录吧!">立即登录</h3>
             </div>
-            <div v-bind:class="{ show: isShowRegister }" class="register">
-              <input type="text" v-model="register.username" placeholder="创建用户名" />
-              <input type="password" v-model="register.password" placeholder="设置密码" />
-              <p v-bind:class="{ error: register.isError }">{{ register.notice }}</p>
-              <div class="button" @click="onRegister" title="最后一步，点击创建!">创建</div>
-            </div>
-            <div v-bind:class="{ show: isShowLogin }" class="login">
-              <input type="text" v-model="login.username" placeholder="输入用户名" />
-              <input type="password" v-model="login.password" placeholder="输入密码" />
-              <p v-bind:class="{ error: login.isError }">{{ login.notice }}</p>
-              <div class="button" @click="onLogin" title="点击登录">登录</div>
-            </div>
+            <transition name="slide">
+              <div v-bind:class="{ show: isShowRegister }" class="register">
+                <input type="text" v-model="register.username" placeholder="创建用户名" />
+                <input type="password" v-model="register.password" @keyup.enter="onRegister" placeholder="设置密码" />
+                <p v-bind:class="{ error: register.isError }">{{ register.notice }}</p>
+                <div class="button" @click="onRegister" title="最后一步，点击创建!">创建</div>
+              </div>
+            </transition>
+            <transition name="slide">
+              <div v-bind:class="{ show: isShowLogin }" class="login">
+                <input type="text" v-model="login.username" placeholder="输入用户名" />
+                <input type="password" v-model="login.password" @keyup.enter="onLogin" placeholder="输入密码" />
+                <p v-bind:class="{ error: login.isError }">{{ login.notice }}</p>
+                <div class="button" @click="onLogin" title="点击登录">登录</div>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -66,8 +70,8 @@
         this.isShowRegister = false
       },
       showRegister() {
-        this.isShowRegister = true
         this.isShowLogin = false
+        this.isShowRegister = true
       },
       onRegister() {
         if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.register.username)) {
@@ -90,16 +94,16 @@
             this.register.notice = ''
             this.$router.push({ path: 'notebooks' })
           })
-          .catch(res => {
+          .catch(data => {
             this.register.isError = true
-            this.register.notice = res.msg
+            this.register.notice = data.msg
           })
       },
 
       onLogin() {
         if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.login.username)) {
           this.login.isError = true
-          this.login.notice = '用户名3~15个字符，仅限于字母数字中文下划线'
+          this.login.notice = '用户名3~15个字符，仅限于字母数字下划线中文'
           return
         }
         if (!/^.{6,16}$/.test(this.login.password)) {
@@ -117,9 +121,9 @@
             this.login.notice = ''
             this.$router.push({ path: 'notebooks' })
           })
-          .catch(res => {
+          .catch(data => {
             this.login.isError = true
-            this.login.notice = res.msg
+            this.login.notice = data.msg
           })
       }
     }

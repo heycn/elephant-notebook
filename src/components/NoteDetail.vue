@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import NoteSidebar from '@/components/NoteSidebar.vue'
+  import NoteSidebar from '@/components/NoteSidebar'
   import _ from 'lodash'
   import MarkdownIt from 'markdown-it'
   import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'

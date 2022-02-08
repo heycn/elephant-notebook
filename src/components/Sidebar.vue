@@ -8,23 +8,24 @@
       <router-link to="/notebooks" title="列表页"> <i class="iconfont icon-notebook"></i> </router-link>
       <router-link to="/trash" title="回收站"> <i class="iconfont icon-trash"></i> </router-link>
     </div>
-    <div class="logout" @click="logout">
-      <i class="iconfont icon-logout" title="退出当前登录"></i>
+    <div class="logout">
+      <i class="iconfont icon-logout" @click="logout" title="退出当前登录"></i>
     </div>
   </div>
 </template>
 
 <script>
-  import avatar from './Avatar.vue'
+  import avatar from '@/components/Avatar.vue'
   import Auth from '@/apis/auth'
 
   export default {
     components: {
       avatar
     },
+
     methods: {
       logout() {
-        Auth.logout().then(res => {
+        Auth.logout().then(data => {
           this.$router.push({ path: 'login' })
           this.$message.success(res.msg)
         })
@@ -42,6 +43,7 @@
 
     .icons {
       margin-top: 16px;
+
       a {
         padding: 12px 0;
         display: block;
