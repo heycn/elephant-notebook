@@ -1,9 +1,7 @@
 // 格式化日期
 
 export function friendlyDate(dateStr) {
-  let dateObj = typeof dateStr === 'object'
-    ? dateStr
-    : new Date(dateStr)
+  let dateObj = typeof dateStr === 'object' ? dateStr : new Date(dateStr)
   let time = dateObj.getTime()
   let now = Date.now()
   let space = now - time // 时间差
