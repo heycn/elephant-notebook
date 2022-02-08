@@ -18,14 +18,15 @@
       </ul>
     </div>
     <div class="note-detail">
-      <div class="note-bar" v-if="true"></div>
-      <span>创建日期：{{ curTrashNote.createdAtFriendly }}</span>
-      <span> | </span>
-      <span>创建日期：{{ curTrashNote.updatedAtFriendly }}</span>
-      <span> | </span>
-      <span>所属笔记本：{{ belongTo }}</span>
-      <a class="btn action" @click="onRevert">恢复</a>
-      <a class="btn action" @click="onDelete">彻底删除</a>
+      <div class="note-bar" v-if="true">
+        <span>创建日期：{{ curTrashNote.createdAtFriendly }}</span>
+        <span> | </span>
+        <span>创建日期：{{ curTrashNote.updatedAtFriendly }}</span>
+        <span> | </span>
+        <span>所属笔记本：{{ belongTo }}</span>
+        <a class="btn action" @click="onRevert">恢复</a>
+        <a class="btn action" @click="onDelete">彻底删除</a>
+      </div>
       <div class="note-title">
         <span>{{ curTrashNote.title }}</span>
       </div>
@@ -110,7 +111,6 @@
 
     .note-bar {
       .action {
-        border: 1px solid red;
         float: right;
         margin-left: 10px;
         padding: 2px 4px;
