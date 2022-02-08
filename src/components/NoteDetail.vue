@@ -38,7 +38,6 @@
 </template>
 
 <script>
-  import Auth from '@/apis/auth'
   import NoteSidebar from '@/components/NoteSidebar.vue'
   import _ from 'lodash'
   import MarkdownIt from 'markdown-it'
@@ -59,11 +58,7 @@
     },
 
     created() {
-      Auth.getInfo().then(res => {
-        if (!res.isLogin) {
-          this.$router.push({ path: '/login' })
-        }
-      })
+      this.checkLogin({ path: '/login' })
     },
 
     computed: {
@@ -76,7 +71,7 @@
 
     methods: {
       ...mapMutations(['setCurNote']),
-      ...mapActions(['updateNote', 'deleteNote']),
+      ...mapActions(['updateNote', 'deleteNote', 'checkLogin']),
 
       onUpdateNote: _.debounce(function() {
         this.updateNote({ noteId: this.curNote.id, title: this.curNote.title, content: this.curNote.content })

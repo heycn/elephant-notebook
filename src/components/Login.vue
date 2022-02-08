@@ -33,14 +33,9 @@
 <script>
   import Auth from '@/apis/auth'
   import Bus from '@/helpers/bus'
-
-  Auth.getInfo().then(res => {
-    console.log(res)
-  })
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
-    name: 'Login',
-
     data() {
       return {
         isShowLogin: true,
@@ -49,27 +44,31 @@
           username: '',
           password: '',
           notice: '请输入用户名和密码',
-          isError: false // isError 是来控制 notice 是否展示 默认隐藏
+          isError: false
         },
         register: {
           username: '',
           password: '',
           notice: '创建账号后，要记住用户名和密码哦~',
-          isError: false // 和 login 里一样 控制 notice 是否展示
+          isError: false
         }
       }
     },
 
     methods: {
-      showRegister() {
-        this.isShowRegister = true
-        this.isShowLogin = false
-      },
+      ...mapActions({
+        loginUser: 'login',
+        registerUser: 'register'
+      }),
+
       showLogin() {
         this.isShowLogin = true
         this.isShowRegister = false
       },
-
+      showRegister() {
+        this.isShowRegister = true
+        this.isShowLogin = false
+      },
       onRegister() {
         if (!/^[\w\u4e00-\u9fa5]{3,15}$/.test(this.register.username)) {
           this.register.isError = true
@@ -82,14 +81,13 @@
           return
         }
 
-        Auth.register({
+        this.registerUser({
           username: this.register.username,
           password: this.register.password
         })
           .then(() => {
             this.register.isError = false
             this.register.notice = ''
-            Bus.$emit('userInfo', { username: this.login.username })
             this.$router.push({ path: 'notebooks' })
           })
           .catch(res => {
@@ -110,16 +108,14 @@
           return
         }
 
-        Auth.login({
+        this.loginUser({
           username: this.login.username,
           password: this.login.password
         })
-          .then(res => {
+          .then(() => {
             this.login.isError = false
             this.login.notice = ''
-            Bus.$emit('userInfo', { username: this.login.username })
             this.$router.push({ path: 'notebooks' })
-            this.$message.success(res.msg)
           })
           .catch(res => {
             this.login.isError = true
