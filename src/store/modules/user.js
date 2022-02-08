@@ -1,6 +1,7 @@
 import Auth from '@/apis/auth'
 import router from '@/router'
 
+window.router = router
 const state = {
   user: null
 }
@@ -23,6 +24,7 @@ const actions = {
       commit('setUser', { user: res.data })
     })
   },
+
   register({ commit }, { username, password }) {
     return Auth.register({ username, password }).then(res => {
       commit('setUser', { user: res.data })
@@ -41,4 +43,9 @@ const actions = {
   }
 }
 
-export default { state, getters, mutations, actions }
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

@@ -22,11 +22,11 @@ const mutations = {
   },
 
   addNote(state, payload) {
-    state.note.unshift(payload.note)
+    state.notes.unshift(payload.note)
   },
 
   updateNote(state, payload) {
-    let note = state.notes.find(note => note.id == payload.noteId) || {}
+    let note = state.notes.find(note => note.id === payload.noteId) || {}
     note.title = payload.title
     note.content = payload.content
   },
@@ -43,7 +43,7 @@ const mutations = {
 const actions = {
   getNotes({ commit }, { notebookId }) {
     return Note.getAll({ notebookId }).then(res => {
-      commit('setNotebooks', { notes: res.data })
+      commit('setNote', { notes: res.data })
     })
   },
 
@@ -67,4 +67,9 @@ const actions = {
   }
 }
 
-export default { state, getters, mutations, actions }
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}
