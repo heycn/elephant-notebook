@@ -2,12 +2,18 @@ import Note from '@/apis/notes'
 import { Message } from 'element-ui'
 
 const state = {
-  notes: [],
-  curNote: []
+  notes: null,
+  curNoteId: null
 }
 
 const getters = {
-  notes: state => state.notes
+  notes: state => state.notes || [],
+
+  curNote: state => {
+    if (!Array.isArray(state.notes)) return {}
+    if (!state.curNoteId) return state.notes[0]
+    return state.notes.find(note => note.id == state.curNoteId) || {}
+  }
 }
 
 const mutations = {
@@ -27,32 +33,34 @@ const mutations = {
 
   deleteNote(state, payload) {
     state.notes = state.notes.filter(note => note.id !== payload.noteId)
+  },
+
+  setCurNote(state, payload) {
+    state.curNoteId = payload.curNoteId
   }
 }
 
 const actions = {
   getNotes({ commit }, { notebookId }) {
-    Note.getAll({ notebookId }).then(res => {
+    return Note.getAll({ notebookId }).then(res => {
       commit('setNotebooks', { notes: res.data })
     })
   },
 
   addNote({ commit }, { notebookId, title, content }) {
-    Note.addNote({ notebookId }, { title, content }).then(res => {
+    return Note.addNote({ notebookId }, { title, content }).then(res => {
       commit('addNote', { note: res.data })
-      Message.success(res.msg)
     })
   },
 
   updateNote({ commit }, { noteId, title, content }) {
-    Notebook.updateNote({ noteId }, { title, content }).then(res => {
+    return Note.updateNote({ noteId }, { title, content }).then(res => {
       commit('updateNote', { noteId, title, content })
-      Message.success(res.msg)
     })
   },
 
   deleteNote({ commit }, { noteId }) {
-    Notebook.deleteNotebook({ noteId }).then(res => {
+    return Notebook.deleteNotebook({ noteId }).then(res => {
       commit('deleteNotebook', { noteId })
       Message.success(res.msg)
     })
