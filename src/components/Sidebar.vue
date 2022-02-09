@@ -25,7 +25,7 @@
 
     methods: {
       logout() {
-        Auth.logout().then(data => {
+        Auth.logout().then(res => {
           this.$router.push({ path: 'login' })
           this.$message.success(res.msg)
         })
