@@ -8,4 +8,4 @@ git branch -M main &&
 git remote add origin git@github.com:heycn/elephant-notebook-website.git &&
 git push -f -u origin main &&
 cd -
-echo https://heycn.github.io/elephant-notebook-website/index.html
+echo https://heycn.github.io/elephant-notebook-website/
