@@ -12,6 +12,15 @@ npm run build
 
 ```
 
+## 一键部署
+
+```bash
+
+npm run deploy:github
+
+npm run deploy:gitee
+```
+
 ## 注意
 
 如果在本地预览出现：您的连接不是私密连接
