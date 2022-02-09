@@ -12,3 +12,11 @@ npm run build
 
 npm run build --report
 ```
+
+## 注意
+
+如果在本地预览出现：您的连接不是私密连接
+
+那么请在键盘敲：thisisunsafe
+
+告诉浏览器：我知道这个连接不安全，但我还是要访问
