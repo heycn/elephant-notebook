@@ -77,6 +77,7 @@
         this.revertTrashNote({ noteId: this.curTrashNote.id })
       }
     },
+
     beforeRouteUpdate(to, from, next) {
       this.setCurTrashNote({ curTrashNoteId: to.query.noteId })
       next()
