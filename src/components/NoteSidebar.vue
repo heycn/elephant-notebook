@@ -24,9 +24,6 @@
 </template>
 
 <script>
-  import Notebooks from '@/apis/notebooks'
-  import Notes from '@/apis/notes'
-  import Bus from '@/helpers/bus'
   import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
   export default {

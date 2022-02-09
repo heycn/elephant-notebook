@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import Auth from '@/apis/auth'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
