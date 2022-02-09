@@ -16,7 +16,7 @@
         <div class="note-title">
           <input
             type="text"
-            v-model:value="curNote.title"
+            v-model="curNote.title"
             @input="onUpdateNote"
             @keydown="statusText = '正在输入...'"
             placeholder="输入标题"
@@ -25,7 +25,7 @@
         <div class="editor">
           <textarea
             v-show="isShowPreview"
-            v-model:value="curNote.content"
+            v-model="curNote.content"
             @input="onUpdateNote"
             @keydown="statusText = '正在输入...'"
             placeholder="输入内容，支持 Markdown 语法"
@@ -74,6 +74,7 @@
       ...mapActions(['updateNote', 'deleteNote', 'checkLogin']),
 
       onUpdateNote: _.debounce(function() {
+        if (!this.curNote.id) return
         this.updateNote({ noteId: this.curNote.id, title: this.curNote.title, content: this.curNote.content })
           .then(data => {
             this.statusText = '已保存'
