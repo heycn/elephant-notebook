@@ -9,14 +9,14 @@
       <router-link to="/trash" title="回收站"> <i class="iconfont icon-trash"></i> </router-link>
     </div>
     <div class="logout">
-      <i class="iconfont icon-logout" @click="logout" title="退出当前登录"></i>
+      <i class="iconfont icon-logout" @click="onLogout" title="退出当前登录"></i>
     </div>
   </div>
 </template>
 
 <script>
   import avatar from '@/components/Avatar.vue'
-  import Auth from '@/apis/auth'
+  import { mapActions } from 'vuex'
 
   export default {
     components: {
@@ -24,11 +24,10 @@
     },
 
     methods: {
-      logout() {
-        Auth.logout().then(res => {
-          this.$router.push({ path: 'login' })
-          this.$message.success(res.msg)
-        })
+      ...mapActions(['logout']),
+
+      onLogout() {
+        this.logout({ path: '/login' })
       }
     }
   }
