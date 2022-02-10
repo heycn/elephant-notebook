@@ -15,6 +15,7 @@
   }
 
   .note-bar {
+    background: #fcfcfc;
     padding: 4px 20px;
     border-bottom: 1px solid #eee;
     &:after {
@@ -38,6 +39,7 @@
   .note-title {
     input,
     span {
+      background: #ebf5f6;
       display: inline-block;
       width: 100%;
       border: none;
@@ -51,11 +53,14 @@
     height: ~'calc(100% - 70px)'; // 禁止 less 不进行计算
     position: relative;
   }
+
   textarea,
   .preview {
+    background: #f6f8fa;
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow: auto;
     padding: 20px;
   }
 

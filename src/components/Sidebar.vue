@@ -36,7 +36,7 @@
 <style lang="less" scoped>
   #sidebar {
     position: relative;
-    min-width: 64px;
+    min-width: 78px;
     text-align: center;
     background: #353a5a;
 
@@ -44,7 +44,7 @@
       margin-top: 16px;
 
       a {
-        padding: 12px 0;
+        padding: 18px 0;
         display: block;
       }
     }
@@ -55,7 +55,7 @@
 
     .logout {
       position: absolute;
-      bottom: 20px;
+      bottom: 32px;
       width: 100%;
       text-align: center;
       cursor: pointer;

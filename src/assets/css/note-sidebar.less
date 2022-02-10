@@ -1,8 +1,11 @@
+// 笔记与回收站边测栏列表
+
 .note-sidebar {
   width: 290px;
   border-right: 1px solid #d6d6d6;
   background: #eff4f5;
   position: relative;
+  overflow: auto;
 
   .add-note {
     position: absolute;
@@ -16,6 +19,7 @@
     border: none;
     z-index: 1;
   }
+
   .add-note:hover {
     background: #f0fcfa;
   }
@@ -30,13 +34,16 @@
     border-bottom: 1px solid #d6d6d6;
     background: #fff;
     display: block;
+
     > .el-dropdown-link {
       cursor: pointer;
+
       > .iconfont {
         font-size: 20px;
       }
     }
   }
+
   .el-dropdown-menu__item {
     width: 200px;
   }
@@ -67,6 +74,7 @@
     li {
       border-bottom: 1px solid #e6e6e6;
       background: #fafcfd;
+
       a {
         text-align: center;
         display: flex;
@@ -74,6 +82,7 @@
         font-size: 12px;
         border: 2px solid transparent;
       }
+
       .router-link-exact-active {
         background: #e3fffc;
       }

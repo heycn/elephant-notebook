@@ -118,6 +118,7 @@
     align-items: stretch;
     background: #fff;
     flex: 1;
+    overflow: auto;
 
     .note-bar {
       .action {
