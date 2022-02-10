@@ -31,7 +31,7 @@
       this.getNotebooks()
         .then(() => {
           this.setCurBook({ curBookId: this.$route.query.notebookId })
-          return this.getNotes({ notebookId: this.curBook.id })
+          if (this.curBook.id) return this.getNotes({ notebookId: this.curBook.id })
         })
         .then(() => {
           this.setCurNote({ curNoteId: this.$route.query.noteId })
@@ -55,6 +55,7 @@
 
     methods: {
       ...mapMutations(['setCurBook', 'setCurNote']),
+
       ...mapActions(['getNotebooks', 'getNotes', 'addNote']),
 
       handleCommand(notebookId) {
@@ -63,7 +64,7 @@
         }
         this.$store.commit('setCurBook', { curBookId: notebookId })
         this.getNotes({ notebookId }).then(() => {
-          this.setCurNote({})
+          this.setCurNote()
           this.$router.replace({
             path: '/note',
             query: {
