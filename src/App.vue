@@ -56,4 +56,7 @@
     display: flex;
     align-items: stretch;
   }
+  code {
+    color: #f66;
+  }
 </style>
