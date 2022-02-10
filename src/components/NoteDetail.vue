@@ -23,22 +23,6 @@
           />
         </div>
         <div class="editor">
-          <!-- <codemirror
-            ref="refresh"
-            id="codemirror"
-            placeholder="请在吃输入内容..."
-            v-model="curNote.content"
-            :options="cmOptions"
-            v-show="!isShowPreview"
-            @input="onUpdateNote"
-            @inputRead="statusText = '正在输入...'"
-          ></codemirror>
-          <div
-            class="preview markdown-body"
-            v-html="isShowPreview"
-            v-show="!isShowPreview"
-            :content="previewContent"
-          ></div> -->
           <textarea
             v-show="isShowPreview"
             v-model="curNote.content"
@@ -69,24 +53,7 @@
     data() {
       return {
         statusText: '笔记未改动',
-        isShowPreview: false,
-        // cmOptions: {
-        //   smartIndent: false,
-        //   electricChars: false,
-        //   mode: 'text/x-markdown',
-        //   theme: 'base16-light',
-        //   lineNumbers: false,
-        //   line: true,
-        //   autoCloseBrackets: true,
-        //   matchCloseBrackets: true,
-        //   autoCloseTags: true,
-        //   lineWrapping: true,
-        //   extraKays: {
-        //     Tab: function(cm) {
-        //       cm.replaceSelection('  ', 'end')
-        //     }
-        //   }
-        // }
+        isShowPreview: false
       }
     },
 

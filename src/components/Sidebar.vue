@@ -19,15 +19,13 @@
   import { mapActions } from 'vuex'
 
   export default {
-    components: {
-      avatar
-    },
+    components: { avatar },
 
     methods: {
       ...mapActions(['logout']),
 
       onLogout() {
-        this.logout({ path: '/login' })
+        this.logout({})
       }
     }
   }
