@@ -25,7 +25,7 @@
       ...mapActions(['logout']),
 
       onLogout() {
-        this.logout({})
+        this.logout({ path: '/login' })
       }
     }
   }
